@@ -65,9 +65,9 @@
                 android:fontFamily="casual"
                 android:text="Consulter les recettes"
                 android:textAlignment="center"
-                android:textColor="@android:color/background_light"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                android:background="@android:color/background_dark"
+                android:background="@android:color/background_light"
                 android:textStyle="bold" />
 
             <Button
@@ -104,9 +104,9 @@
                 android:fontFamily="casual"
                 android:text="Mon frigo"
                 android:textAlignment="center"
-                android:textColor="@android:color/background_light"
+                android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                android:background="@android:color/background_dark"
+                android:background="@android:color/background_light"
                 android:textStyle="bold" />
 
             <Button
@@ -144,8 +144,8 @@
                 android:fontFamily="casual"
                 android:text="Nous contacter"
                 android:textAlignment="center"
-                android:textColor="@android:color/background_light"
-                android:background="@android:color/background_dark"
+                android:textColor="@color/colorAccent"
+                android:background="@android:color/background_light"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

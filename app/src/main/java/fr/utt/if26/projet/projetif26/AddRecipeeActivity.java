@@ -58,15 +58,15 @@ public class AddRecipeeActivity extends AppCompatActivity implements OnClickList
 
     public static final int PICK_IMAGE = 1;
 
-    @Override
+    //@Override
     public void onClick(View view) {
-        switch (view.getId()){
+        /*switch (view.getId()){
             case R.id.addPhoto:
                 selectImage(); //Demande à l'utilisateur de choisir une image dans sa gallerie
                 break;
             case R.id.submitRecipee:
                 submitRecipee(); //Stocke en BDD la recette
-                break;
+                break;*/
         }
 
         /*Intent intent=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -78,8 +78,8 @@ public class AddRecipeeActivity extends AppCompatActivity implements OnClickList
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);*/
-    }
-    private void submitRecipee(){
+    //}
+    /*private void submitRecipee(){
         String picturePath = tvphoto.getTag().toString();
         etTitle = (EditText)findViewById(R.id.etTitre);
         etDesc = (EditText)findViewById(R.id.etDesc);
@@ -156,6 +156,6 @@ public class AddRecipeeActivity extends AppCompatActivity implements OnClickList
                 viewImage.setBackground(d);
             }
         }
-    }
+    }*/
 }
 

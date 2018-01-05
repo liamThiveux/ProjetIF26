@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +43,7 @@ public class DayMealActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daymealactivity);
+        SQLiteDatabase.loadLibs(this);
 
         LinkTableWithForeignKey ltwf = new LinkTableWithForeignKey(this);
         Log.d("TOUSLESINGREDIENTS",ltwf.getAllIngredient().toString());
@@ -71,8 +74,8 @@ public class DayMealActivity extends AppCompatActivity {
         TextView etEtapes;
         layoutForIng = (LinearLayout)findViewById(R.id.layoutForIng);
         etEtapes = (TextView)findViewById(R.id.etEtapes);
-        RecetteIngredientPersistance db = new RecetteIngredientPersistance(this);
-        Recette recetteDuJour = null;
+        //RecetteIngredientPersistance db = new RecetteIngredientPersistance(this);
+        //Recette recetteDuJour = null;
         Recette2 recetteDuJour2;
 
         //Recherche des recettes réalisable
@@ -93,13 +96,14 @@ public class DayMealActivity extends AppCompatActivity {
                  Toast toast = Toast.makeText(getApplicationContext(),"Vous n'avez pas assez d'ingrédient pour réaliser une de nos recettes", Toast.LENGTH_LONG);
                  toast.setGravity(Gravity.CENTER, 0, 0);
                  toast.show();             }
-             Random r = new Random();
-             Log.d("NBRECETTE",String.valueOf(nbRecette));
-             int dayMeal = r.nextInt(nbRecette - 0);
-             Log.d("Random", String.valueOf(dayMeal));
-             recetteDuJour2 = recettesPossible.get(dayMeal);
-             Log.d("Recette", recetteDuJour2.toString());
-
+             //else {
+                 Random r = new Random();
+                 Log.d("NBRECETTE", String.valueOf(nbRecette));
+                 int dayMeal = r.nextInt(nbRecette - 0);
+                 Log.d("Random", String.valueOf(dayMeal));
+                 recetteDuJour2 = recettesPossible.get(dayMeal);
+                 Log.d("Recette", recetteDuJour2.toString());
+             //}
          }
 
              etEtapes.setText("   " + recetteDuJour2.getEtapes());

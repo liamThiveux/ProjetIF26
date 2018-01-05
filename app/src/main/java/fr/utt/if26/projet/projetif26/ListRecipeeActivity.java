@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class ListRecipeeActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listrecipeeactivity);
+        SQLiteDatabase.loadLibs(this);
         verifyStoragePermission(this);
 
         final ListView maListe = (ListView) findViewById(R.id.list);

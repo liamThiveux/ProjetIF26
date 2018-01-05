@@ -1,13 +1,18 @@
 package fr.utt.if26.projet.projetif26;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import net.sqlcipher.Cursor;
+import net.sqlcipher.DatabaseUtils;
+import net.sqlcipher.SQLException;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
+
 import android.util.Log;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +21,8 @@ import java.util.List;
  */
 
 
-public class LinkTableWithForeignKey extends SQLiteOpenHelper {
+public class LinkTableWithForeignKey extends SQLiteOpenHelper{
+
 
     //DataBase Info
     public static final int DATABASE_VERSION = 4;
@@ -43,7 +49,6 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
         String TABLE_REC_CREATE =
                 "CREATE TABLE " + TABLE_REC + "(" +
                         ATTRIBUT_ID + " INTEGER primary key autoincrement, " +
@@ -75,7 +80,11 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
                         ")";
         sqLiteDatabase.execSQL(TABLE_LINK_CREATE);
         Log.i ("Persistance onCreate", "Table link created successfully");
+
+
     }
+
+
 
     @Override
     public void onOpen(SQLiteDatabase db) {
@@ -149,12 +158,13 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
                 "Baisser le feu, et ajouter 2 cuillères à soupe de crème." +
                 "Après 5 min de cuisson, remettre 2 cuillères à soupe de crème et des épices (si nécessaire)" +
                 "Si le plat est fait à l'avance, remettre un peu de crème au moment de réchauffer car la sauce s'évapore."));
+        //addRecette(new Recette2())
     }
 
 
     public void addLink (Link i){
         Log.d("Insert","Insertion d'un ingrédient");
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         ContentValues values = new ContentValues();
         Log.d("idInsertING",String.valueOf(i.getIdIngredient()));
         values.put(ID_RECETTE,i.getIdRecette());
@@ -169,7 +179,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
     public void addRecette (Recette2 r){
         Log.d("Insert","Insertion de recette 2.0");
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         ContentValues values = new ContentValues();
         values.put(ATTRIBUT_TITRE,r.getTitre());
         values.put(ATTRIBUT_DESC,r.getEtapes());
@@ -185,7 +195,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
     public void addIngredient (Ingredient2_0 i){
         Log.d("Insert","Insertion d'un ingrédient2.0");
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         ContentValues values = new ContentValues();
         values.put(INGREDIENT,i.getNomIngredient()); // Attribut Nom Ingredient
 
@@ -197,7 +207,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
     }
 
     Link getLink(int idRecette) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase("");
 
         Cursor cursor = db.query(LINK_TABLE, new String[] { ID_RECETTE,
                         ID_INGREDIENT}, ID_RECETTE + "=?",
@@ -213,7 +223,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
     public Recette2 getRecetteById(int id){
         Log.d("Choix","Quel recette voulez-vous ?");
         String selectQuery = "SELECT * FROM " + TABLE_REC;
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("if2617");
         Cursor cursor = db.rawQuery(selectQuery, null);
         Recette2 r = null;
         if (cursor.moveToFirst()) {
@@ -232,13 +242,11 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT recettesfinal.id, ingredientRecetteTable.ingredient FROM " + TABLE_REC +", "+ LINK_TABLE + ", " + ING_TABLE +
                 " WHERE recettesfinal.id = linkTable.idRecette AND linkTable.idIng = ingredientRecetteTable.id;";
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<Ingredient2_0> listIng = new ArrayList<Ingredient2_0>();
         if (cursor.moveToFirst()){
             do {
-                Log.d("DANSLEDO","voila");
-
                 Ingredient2_0 i = new Ingredient2_0("fill");
                 i.setId(Integer.parseInt(cursor.getString(0)));
                 i.setNomIngredient(cursor.getString(1));
@@ -257,7 +265,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_REC;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -281,7 +289,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + ING_TABLE;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -303,7 +311,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  ingredient FROM " + ING_TABLE;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -327,7 +335,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + LINK_TABLE;
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase("if2617");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -349,7 +357,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT recettesfinal.id, ingredientRecetteTable.ingredient FROM " + TABLE_REC +", "+ LINK_TABLE + ", " + ING_TABLE +
                 " WHERE recettesfinal.id = linkTable.idRecette AND linkTable.idIng = ingredientRecetteTable.id ;";
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
         List<Ingredient2_0> listIng = new ArrayList<Ingredient2_0>();
         if (cursor.moveToFirst()){
@@ -374,7 +382,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT * FROM " + LINK_TABLE;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -419,7 +427,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
 
 
     public void deleteLink(int i) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase("");
         db.delete(LINK_TABLE, ID_RECETTE + " = ?",
                 new String[] { String.valueOf(i)});
         db.close();
@@ -428,7 +436,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper {
     // Getting contacts Count
     public int getIngredientCount() {
         String countQuery = "SELECT "+ID_INGREDIENT+" FROM " + LINK_TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase("");
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
 

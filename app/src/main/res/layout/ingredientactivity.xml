@@ -30,6 +30,7 @@
                     android:fontFamily="casual"
                     android:text="Veuillez renseigner tous les ingrédients dont vous disposez "
                     android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -47,6 +48,7 @@
                         android:fontFamily="casual"
                         android:text="Présent dans votre frigo :"
                         android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -80,6 +82,7 @@
                     android:fontFamily="casual"
                     android:text="Ce que vous ajoutez :"
                     android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -95,7 +98,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.04"
-                    android:text="Envoyer" />
+                    android:background="@color/colorAccent"
+                    android:text="Envoyer"
+                    android:textColor="@android:color/background_light" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

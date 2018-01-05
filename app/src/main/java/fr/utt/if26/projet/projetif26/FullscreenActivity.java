@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
+import java.io.File;
+
 
 public class FullscreenActivity extends AppCompatActivity implements OnClickListener {
 

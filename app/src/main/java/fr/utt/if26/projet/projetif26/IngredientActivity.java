@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,8 @@ public class IngredientActivity extends Activity implements OnItemSelectedListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         final IngredientPersistance dbIng = new IngredientPersistance(this);
+        SQLiteDatabase.loadLibs(this);
+
         if(dbIng.getAllIngredient() == null || dbIng.getAllIngredient().isEmpty()){
             Toast toast = Toast.makeText(getApplicationContext(),"Bienvenu, avant de pouvoir faire quoi que ce soit vous devez renseigner ce que vous posséder dans votre frigo", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
