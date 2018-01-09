@@ -473,30 +473,6 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         return ingredientList;
     }
 
-    /*public ArrayList<Ingredient2_0> getIngredientNameByRecette(int idRecette){
-        ArrayList<Ingredient2_0> ingredientList = new ArrayList<Ingredient2_0>();
-        // Select All Query
-        Log.d("IDRECETTE",String.valueOf(idRecette));
-        String selectQuery = "SELECT * FROM " + LINK_TABLE + ", " + ING_TABLE + ", " + TABLE_REC + " WHERE recettesfinal.id = linkTable.idRecette AND linkTable.idIng = ingredientRecetteTable.id;";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        Log.d("CURSORMAMENE",cursor.getString(1) + " " + cursor.getString(2));
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Log.d("CURSORMAMENE",cursor.getString(3) + " " + cursor.getString(4));
-                Ingredient2_0 i = new Ingredient2_0("fill");
-                    i.setId(Integer.parseInt(cursor.getString(0)));
-                    i.setNomIngredient(cursor.getString(1));
-                    ingredientList.add(i);
-            } while (cursor.moveToNext());
-        }
-
-        // return la liste des ingredients
-        return ingredientList;
-    }*/
-
-
     public void deleteLink(int i) {
         SQLiteDatabase db = this.getWritableDatabase("");
         db.delete(LINK_TABLE, ID_RECETTE + " = ?",
