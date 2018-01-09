@@ -47,9 +47,6 @@ public class WhatForActivity extends Activity implements OnClickListener {
             case R.id.listButton:
                 goToListRecipee();
                 break;
-            //case R.id.addRecipeeButton:
-              //  goToAddRecipee();
-               // break;
             case R.id.contactButton:
                 goToContactPage();
                 break;

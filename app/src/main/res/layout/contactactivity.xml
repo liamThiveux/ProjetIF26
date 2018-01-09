@@ -40,11 +40,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/fb"
             android:layout_width="88dp"
             android:layout_height="135dp"
-            android:background="@drawable/fblogo"
-            android:layout_weight="0.17" />
+            android:layout_weight="0.17"
+            android:background="@drawable/fblogo" />
 
         <Space
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/twitter"
             android:layout_width="112dp"
             android:layout_height="143dp"
             android:background="@drawable/twitterlogo" />
@@ -63,11 +63,11 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/insta"
             android:layout_width="81dp"
             android:layout_height="124dp"
-            android:background="@drawable/instalogo"
-            android:layout_weight="0.20" />
+            android:layout_weight="0.20"
+            android:background="@drawable/instalogo" />
     </LinearLayout>
 
     <LinearLayout
@@ -111,11 +111,11 @@
         style="@style/Widget.AppCompat.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:stepSize="0.1"
         android:layout_gravity="center"
-        />
+        android:isIndicator="false"
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="1" />
 
     <Space
         android:layout_width="match_parent"

@@ -84,7 +84,11 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
 
     }
 
-
+    public void globalInit(){
+        initRecette();
+        initIngredient();
+        initLink();
+    }
 
     @Override
     public void onOpen(SQLiteDatabase db) {
@@ -113,6 +117,32 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         addLink(new Link(2,11)); //Curry
         addLink(new Link(2,12)); //Cumin
         addLink(new Link(2,13)); //Piment
+
+        addLink(new Link(5,7));
+        addLink(new Link(5,8));
+        addLink(new Link(5,10));
+        addLink(new Link(5,14));
+        addLink(new Link(5,15));
+        addLink(new Link(5,16));
+        addLink(new Link(5,17));
+
+        addLink(new Link(3,2));
+        addLink(new Link(3,3));
+        addLink(new Link(3,18));
+        addLink(new Link(3,19));
+        addLink(new Link(3,20));
+        addLink(new Link(3,21));
+        addLink(new Link(3,22));
+        addLink(new Link(3,23));
+        addLink(new Link(3,24));
+        addLink(new Link(3,25));
+
+        addLink(new Link(4,7));
+        addLink(new Link(4,8));
+        addLink(new Link(4,26));
+        addLink(new Link(4,27));
+        addLink(new Link(4,28));
+        addLink(new Link(4,29));
     }
 
     @Override
@@ -132,35 +162,67 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         addIngredient(new Ingredient2_0("vin rouge"));
         addIngredient(new Ingredient2_0("beurre"));
         addIngredient(new Ingredient2_0("sel"));
-        addIngredient(new Ingredient2_0("poivre"));
+        addIngredient(new Ingredient2_0("poivre")); //8
 
         addIngredient(new Ingredient2_0("blancs de poulet"));
         addIngredient(new Ingredient2_0("crème fraiche"));
         addIngredient(new Ingredient2_0("curry"));
         addIngredient(new Ingredient2_0("cumin"));
-        addIngredient(new Ingredient2_0("piment"));
+        addIngredient(new Ingredient2_0("piment")); //13
+
+        addIngredient(new Ingredient2_0("tagliatelle"));
+        addIngredient(new Ingredient2_0("lardon"));
+        addIngredient(new Ingredient2_0("oeuf"));
+        addIngredient(new Ingredient2_0("gruyère")); //17
+
+        addIngredient(new Ingredient2_0("boeuf haché"));
+        addIngredient(new Ingredient2_0("céleri"));
+        addIngredient(new Ingredient2_0("sauce tomate"));
+        addIngredient(new Ingredient2_0("concentré de tomate"));
+        addIngredient(new Ingredient2_0("gousse d'ail"));
+        addIngredient(new Ingredient2_0("huile d'olive"));
+        addIngredient(new Ingredient2_0("spaghetti"));
+        addIngredient(new Ingredient2_0("laurier")); //25
+
+        addIngredient(new Ingredient2_0("canette"));
+        addIngredient(new Ingredient2_0("orange"));
+        addIngredient(new Ingredient2_0("vin blanc"));
+        addIngredient(new Ingredient2_0("bouillon cube")); //29
+
     }
 
-    public void initRecette(){
+    public void initRecette() {
 
-        addRecette(new Recette2("Boeuf bourguignon","storage/emulated/0/Download/Screenshot_1511806168.png","Hacher les oignons. Peler l'ail.\n" +
+        addRecette(new Recette2("Boeuf bourguignon", "storage/emulated/0/Download/Screenshot_1511806168.png", "Hacher les oignons. Peler l'ail.\n" +
                 "Dans une cocotte minute, faire roussir la viande et les lardons dans l’huile ou le beurre.\n" +
                 "Ajouter les oignons, les champignons égouttés et saupoudrer de fariner. Mélanger et laisser dorer un instant.\n" +
                 "Mouiller avec le vin rouge qui doit recouvrir la viande.\n" +
                 "Saler et poivrer.\n" +
                 "Ajouter l’ail et le bouquet garni." +
-                "Fermer la cocotte minute"+
+                "Fermer la cocotte minute" +
                 "Laisser cuire doucement 60 min à partir de la mise en rotation de la soupape."));
-        addRecette(new Recette2("Poulet curry","storage/emulated/0/Download/Screenshot_1511806142.png","Mettre une grande poêle à chauffer." +
+        addRecette(new Recette2("Poulet curry", "storage/emulated/0/Download/Screenshot_1511806142.png", "Mettre une grande poêle à chauffer." +
                 "Couper les oignons en petits morceaux, et les faire cuire à feu assez fort." +
                 "Remuer, en ajoutant du curry et du cumin." +
                 "Couper les blancs de poulet en morceaux, les ajouter dans la poêle et remettre des épices; tourner." +
                 "Baisser le feu, et ajouter 2 cuillères à soupe de crème." +
                 "Après 5 min de cuisson, remettre 2 cuillères à soupe de crème et des épices (si nécessaire)" +
                 "Si le plat est fait à l'avance, remettre un peu de crème au moment de réchauffer car la sauce s'évapore."));
-        //addRecette(new Recette2())
+        addRecette(new Recette2("Spaghetti bolognaise","storage/emulated/0/Download/i84653-spaghettis-bolognaise-rapides.jpg","Pelez et émincez l'ail et les oignons, puis faites-les revenir dans une cocotte avec un filet d'huile d'olive."
++        "Ajoutez la viande et laissez cuire quelques minutes." +
+        "Ajoutez la sauce tomate, Salez, poivrez et laissez mijoter 5 min." +
+        "Faites cuire les pâtes et mélangez avec la sauce"));
+        addRecette(new Recette2("Canard à l'orange","storage/emulated/0/Download/recette-e17754-canard-a-l-orange-express.jpg","Préchauffer le four à 200 °C (th. 6/7). \n" +
+                "Couper les cuisses de canard en 2 au niveau de l'articulation. Éplucher les oignons et les tailler en gros morceaux. Couper l'orange en tranches.\n" +
+                "Dans une cocotte avec couvercle, colorer les morceaux de canard sans matière grasse, puis les réserver. \n" +
+                "Enlever la graisse de la cocotte et colorer les morceaux d'oignons et les tranches d'orange. Ajouter le sucre, le vinaigre, et caraméliser. Déglacer ensuite avec le jus d'orange.\n" +
+                "Remettre les morceaux de canard et ajouter l'ail non épluché, le thym et le laurier. Saler et poivrer, ajouter le jus de volaille et 1/4 de litre d'eau, puis couvrir et cuire pendant 45 min au four et à couvert.\n" +
+                "Dresser les cuisses de canard en assiette plate, accompagner de pommes de terre sautées et de légumes verts!"));
+        addRecette(new Recette2("Pâtes carbonara","storage/emulated/0/Download/comment-realiser-des-pates-carbonara-comme-en-italie.jpg","Cuire les pâtes.\n" +
+                "Pendant ce temps, faire dorer les lardons dans une poêle à sec.\n" +
+                "Lorsqu'ils sont dorés, ajouter la crème et laisser mijoter durant 10 minutes.\n" +
+                "Egoutter les pâtes, les verser dans la sauce, ajouter l'oeuf battu, mélanger et servir saupoudrer de fromage."));
     }
-
 
     public void addLink (Link i){
         Log.d("Insert","Insertion d'un ingrédient");
@@ -260,6 +322,14 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         return listIng;
     }
 
+    public void updateLink(int id) {
+        SQLiteDatabase db = this.getWritableDatabase("");
+        ContentValues data = new ContentValues();
+        data.put("photo","storage/emulated/0/Download/i84653-spaghettis-bolognaise-rapides.jpg");
+        db.update(TABLE_REC,data," id=" + id, null);
+        Log.d("Update", "DONE");
+    }
+
     public List<Recette2> getAllRecettes() {
         List<Recette2> recetteList = new ArrayList<Recette2>();
         // Select All Query
@@ -280,6 +350,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
         // return contact list
         return recetteList;
     }

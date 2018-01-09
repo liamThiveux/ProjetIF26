@@ -40,9 +40,8 @@ public class ListRecipeeActivity extends AppCompatActivity{
         final ListView maListe = (ListView) findViewById(R.id.list);
         //RecetteIngredientPersistance db = new RecetteIngredientPersistance(this);
         final LinkTableWithForeignKey db = new LinkTableWithForeignKey(this);
-
         ArrayList<Recette2> recettes = (ArrayList<Recette2>)db.getAllRecettes();
-
+        db.updateLink(3);
         Log.d("Recette", recettes.toString());
         RecetteAdapter adapteur = new RecetteAdapter (this, recettes );
         maListe.setAdapter(adapteur);
