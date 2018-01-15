@@ -99,15 +99,15 @@ public class IngredientActivity extends Activity implements OnItemSelectedListen
         submitShopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (textView1.getText()!= null){
                 Intent intent1 = new Intent(getApplicationContext(),WhatForActivity.class);
+                if (textView1 != null){
                    for (int i=0;i<dynamicLayout.getChildCount();i++) {
                        TextView tv;
                        tv = (TextView)dynamicLayout.getChildAt(i);
                        dbIng.addIngredient(new Ingredient(tv.getText().toString(), 0, 0));
                     }
-                startActivity(intent1);
                 }
+                startActivity(intent1);
             }
         });
     }

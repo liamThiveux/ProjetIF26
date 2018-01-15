@@ -16,6 +16,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by liamo on 21/11/2017.
  */
@@ -84,7 +86,9 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
 
     }
 
+
     public void globalInit(){
+        //createTables();
         initRecette();
         initIngredient();
         initLink();
@@ -285,7 +289,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
     public Recette2 getRecetteById(int id){
         Log.d("Choix","Quel recette voulez-vous ?");
         String selectQuery = "SELECT * FROM " + TABLE_REC;
-        SQLiteDatabase db = this.getWritableDatabase("if2617");
+        SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
         Recette2 r = null;
         if (cursor.moveToFirst()) {
@@ -334,7 +338,6 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         List<Recette2> recetteList = new ArrayList<Recette2>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_REC;
-
         SQLiteDatabase db = this.getWritableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -406,7 +409,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         // Select All Query
         String selectQuery = "SELECT  * FROM " + LINK_TABLE;
 
-        SQLiteDatabase db = this.getReadableDatabase("if2617");
+        SQLiteDatabase db = this.getReadableDatabase("");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list

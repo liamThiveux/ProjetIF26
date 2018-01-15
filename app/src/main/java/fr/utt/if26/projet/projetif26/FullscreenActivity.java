@@ -21,8 +21,12 @@ public class FullscreenActivity extends AppCompatActivity implements OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fullscreenactivity);
 
+        SQLiteDatabase.loadLibs(this);
         b1 = (Button) findViewById(R.id.startButton);
         b1.setOnClickListener(this);
+        LinkTableWithForeignKey init = new LinkTableWithForeignKey(getApplicationContext());
+        init.globalInit();
+
     }
 
     public void onClick(View view) {

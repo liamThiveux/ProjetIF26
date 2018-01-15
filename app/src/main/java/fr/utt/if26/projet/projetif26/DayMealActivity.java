@@ -46,9 +46,6 @@ public class DayMealActivity extends AppCompatActivity {
         SQLiteDatabase.loadLibs(this);
 
         LinkTableWithForeignKey ltwf = new LinkTableWithForeignKey(this);
-        Log.d("TOUSLESINGREDIENTS",ltwf.getAllIngredient().toString());
-        Log.d("RECETTE",ltwf.getAllRecettes().toString());
-        Log.d("LINKALL",ltwf.getAllLink().toString());
         List<Ingredient2_0> lIng = new ArrayList<Ingredient2_0>();
         lIng = ltwf.getIngByRecettes();
         Log.d("JOINTURE",lIng.toString());
@@ -76,7 +73,7 @@ public class DayMealActivity extends AppCompatActivity {
         etEtapes = (TextView)findViewById(R.id.etEtapes);
         //RecetteIngredientPersistance db = new RecetteIngredientPersistance(this);
         //Recette recetteDuJour = null;
-        Recette2 recetteDuJour2;
+        Recette2 recetteDuJour2 = null;
 
         //Recherche des recettes réalisable
         //Si on ne provient pas de l'intent
@@ -89,50 +86,55 @@ public class DayMealActivity extends AppCompatActivity {
          else {
              List<Recette2> allRecette = ltwf.getAllRecettes();
              List<Recette2> recettesPossible = getRecetteConcordante2();
-             Log.d("IDRECETTECONCORDANTE",String.valueOf(recettesPossible.get(0).getId()));
-             Log.d("RECETTECONCORDANTE",recettesPossible.toString());
              int nbRecette = recettesPossible.size();
              if (recettesPossible.size() == 0){
                  Toast toast = Toast.makeText(getApplicationContext(),"Vous n'avez pas assez d'ingrédient pour réaliser une de nos recettes", Toast.LENGTH_LONG);
                  toast.setGravity(Gravity.CENTER, 0, 0);
-                 toast.show();             }
-             //else {
+                 toast.show();
+                 Intent goToFrigo = new Intent(this,IngredientActivity.class);
+                 startActivity(goToFrigo);
+             }
+             else {
+                 Log.d("IDRECETTECONCORDANTE",String.valueOf(recettesPossible.get(0).getId()));
+                 Log.d("RECETTECONCORDANTE",recettesPossible.toString());
                  Random r = new Random();
                  Log.d("NBRECETTE", String.valueOf(nbRecette));
                  int dayMeal = r.nextInt(nbRecette - 0);
                  Log.d("Random", String.valueOf(dayMeal));
                  recetteDuJour2 = recettesPossible.get(dayMeal);
                  Log.d("Recette", recetteDuJour2.toString());
-             //}
+             }
          }
 
-             etEtapes.setText("   " + recetteDuJour2.getEtapes());
-             etEtapes.setTypeface(null, Typeface.BOLD);
-             tvTitle.setText(recetteDuJour2.getTitre());
-             tvTitle.setTextSize(18);
-             tvTitle.setTypeface(null, Typeface.BOLD);
-             File imgFile = new File(recetteDuJour2.getPhoto());
+        if(recetteDuJour2 != null) {
+            etEtapes.setText("   " + recetteDuJour2.getEtapes());
+            etEtapes.setTypeface(null, Typeface.BOLD);
+            tvTitle.setText(recetteDuJour2.getTitre());
+            tvTitle.setTextSize(18);
+            tvTitle.setTypeface(null, Typeface.BOLD);
+            File imgFile = new File(recetteDuJour2.getPhoto());
 
-             if (imgFile.exists()) {
+            if (imgFile.exists()) {
 
-                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 
-                 mainPhoto.setImageBitmap(myBitmap);
+                mainPhoto.setImageBitmap(myBitmap);
 
-             };
-             List<Ingredient2_0> ingredientRecetteChoisie = new ArrayList<>();
+            }
+            ;
+            List<Ingredient2_0> ingredientRecetteChoisie = new ArrayList<>();
             ingredientRecetteChoisie = ltwf.getIngredientNameByRecette(recetteDuJour2.getId());
-        Log.d("RECETTEDUJOUR",String.valueOf(recetteDuJour2.getId()));
-        Log.d("INGREDIENTSRECETTEDU",ingredientRecetteChoisie.toString());
-             for (int i =0;i<ingredientRecetteChoisie.size();i++){
-                 TextView tvIng = new TextView(this);
-                 int j = i+1;
-                 tvIng.setText("            " + j + " - " + ingredientRecetteChoisie.get(i).getNomIngredient());
-                 tvIng.setTextSize(14);
-                 tvIng.setTypeface(null, Typeface.BOLD);
-                 layoutForIng.addView(tvIng);
-             }
-
+            Log.d("RECETTEDUJOUR", String.valueOf(recetteDuJour2.getId()));
+            Log.d("INGREDIENTSRECETTEDU", ingredientRecetteChoisie.toString());
+            for (int i = 0; i < ingredientRecetteChoisie.size(); i++) {
+                TextView tvIng = new TextView(this);
+                int j = i + 1;
+                tvIng.setText("            " + j + " - " + ingredientRecetteChoisie.get(i).getNomIngredient());
+                tvIng.setTextSize(14);
+                tvIng.setTypeface(null, Typeface.BOLD);
+                layoutForIng.addView(tvIng);
+            }
+        }
     }
 
     //GetRecetteConcordante

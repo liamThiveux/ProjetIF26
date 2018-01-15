@@ -41,7 +41,6 @@ public class ListRecipeeActivity extends AppCompatActivity{
         //RecetteIngredientPersistance db = new RecetteIngredientPersistance(this);
         final LinkTableWithForeignKey db = new LinkTableWithForeignKey(this);
         ArrayList<Recette2> recettes = (ArrayList<Recette2>)db.getAllRecettes();
-        db.updateLink(3);
         Log.d("Recette", recettes.toString());
         RecetteAdapter adapteur = new RecetteAdapter (this, recettes );
         maListe.setAdapter(adapteur);
@@ -60,13 +59,6 @@ public class ListRecipeeActivity extends AppCompatActivity{
                 for (int i=0;i<ingList.size();i++){
                     intent1.putExtra("INGREDIENT"+ (i+1), ingList.get(i).getNomIngredient());
                 }
-                /*intent1.putExtra("INGREDIENT1",item.getIngredient1());
-                intent1.putExtra("INGREDIENT2",item.getIngredient2());
-                intent1.putExtra("INGREDIENT3",item.getIngredient3());
-                intent1.putExtra("INGREDIENT4",item.getIngredient4());
-                intent1.putExtra("INGREDIENT5",item.getIngredient5());
-                intent1.putExtra("INGREDIENT6",item.getIngredient6());
-                intent1.putExtra("INGREDIENT7",item.getIngredient7());*/
                 startActivity(intent1);
             }
         });
