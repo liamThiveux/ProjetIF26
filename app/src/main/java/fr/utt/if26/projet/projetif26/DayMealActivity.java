@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,10 @@ import android.widget.Toast;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -112,6 +117,7 @@ public class DayMealActivity extends AppCompatActivity {
             tvTitle.setText(recetteDuJour2.getTitre());
             tvTitle.setTextSize(18);
             tvTitle.setTypeface(null, Typeface.BOLD);
+
             File imgFile = new File(recetteDuJour2.getPhoto());
 
             if (imgFile.exists()) {
@@ -121,7 +127,6 @@ public class DayMealActivity extends AppCompatActivity {
                 mainPhoto.setImageBitmap(myBitmap);
 
             }
-            ;
             List<Ingredient2_0> ingredientRecetteChoisie = new ArrayList<>();
             ingredientRecetteChoisie = ltwf.getIngredientNameByRecette(recetteDuJour2.getId());
             Log.d("RECETTEDUJOUR", String.valueOf(recetteDuJour2.getId()));

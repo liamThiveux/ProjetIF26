@@ -104,8 +104,8 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
     }
 
     public void initLink(){
-        addLink(new Link(1,1)); //Oignons
-        addLink(new Link(1,2)); //Boeuf
+        addLink(new Link(1,1)); //Boeuf
+        addLink(new Link(1,2)); //Oignon
         addLink(new Link(1,3)); //Carotte
         addLink(new Link(1,4)); //Bouquet garni
         addLink(new Link(1,5)); //Vin Rouge
@@ -113,7 +113,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         addLink(new Link(1,7)); //Sel
         addLink(new Link(1,8)); //Poivre
 
-        addLink(new Link(2,1)); //Oignons
+        addLink(new Link(2,2)); //Oignon
         addLink(new Link(2,7)); //Sel
         addLink(new Link(2,8)); //Poivre
         addLink(new Link(2,9)); //Poulet
@@ -196,8 +196,10 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
     }
 
     public void initRecette() {
-
-        addRecette(new Recette2("Boeuf bourguignon", "storage/emulated/0/Download/Screenshot_1511806168.png", "Hacher les oignons. Peler l'ail.\n" +
+        //Url computer
+        //"storage/emulated/0/Download/Screenshot_1511806142.png" Boeuf B
+        //"storage/emulated/0/Download/Screenshot_1511806168.png" Poulet C
+        addRecette(new Recette2("Boeuf bourguignon","storage/emulated/0/Download/10002051.jpg", "Hacher les oignons. Peler l'ail.\n" +
                 "Dans une cocotte minute, faire roussir la viande et les lardons dans l’huile ou le beurre.\n" +
                 "Ajouter les oignons, les champignons égouttés et saupoudrer de fariner. Mélanger et laisser dorer un instant.\n" +
                 "Mouiller avec le vin rouge qui doit recouvrir la viande.\n" +
@@ -205,7 +207,7 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
                 "Ajouter l’ail et le bouquet garni." +
                 "Fermer la cocotte minute" +
                 "Laisser cuire doucement 60 min à partir de la mise en rotation de la soupape."));
-        addRecette(new Recette2("Poulet curry", "storage/emulated/0/Download/Screenshot_1511806142.png", "Mettre une grande poêle à chauffer." +
+        addRecette(new Recette2("Poulet curry","storage/emulated/0/Download/i1494-curry-de-poulet-a-la-noix-de-coco.jpg", "Mettre une grande poêle à chauffer." +
                 "Couper les oignons en petits morceaux, et les faire cuire à feu assez fort." +
                 "Remuer, en ajoutant du curry et du cumin." +
                 "Couper les blancs de poulet en morceaux, les ajouter dans la poêle et remettre des épices; tourner." +
@@ -326,10 +328,10 @@ public class LinkTableWithForeignKey extends SQLiteOpenHelper{
         return listIng;
     }
 
-    public void updateLink(int id) {
+    public void updatePhoto(int id, String url) {
         SQLiteDatabase db = this.getWritableDatabase("");
         ContentValues data = new ContentValues();
-        data.put("photo","storage/emulated/0/Download/i84653-spaghettis-bolognaise-rapides.jpg");
+        data.put("photo",url);
         db.update(TABLE_REC,data," id=" + id, null);
         Log.d("Update", "DONE");
     }
